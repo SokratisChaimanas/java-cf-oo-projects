@@ -5,6 +5,10 @@ public abstract class AbstractShape implements IShape {
 
     public AbstractShape() {}
 
+    public AbstractShape(long id) {
+        this.id = id;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -12,5 +16,12 @@ public abstract class AbstractShape implements IShape {
     @Override
     public long getId() {
         return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return "AbstractShape{" +
+                "id=" + id +
+                '}';
     }
 }

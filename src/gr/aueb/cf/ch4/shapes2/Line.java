@@ -5,8 +5,15 @@ public class Line extends AbstractShape implements ILine {
 
     public Line() {}
 
-    public Line(double length) {
+    public Line(long id, double length) {
+        super(id);
         this.length = length;
+    }
+
+    // Clone Constructor
+    public Line(Line line) {
+        super(line.getId());
+        this.length = line.getLength();
     }
 
     public double getLength() {
@@ -17,5 +24,31 @@ public class Line extends AbstractShape implements ILine {
         this.length = length;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Line{" +
+                "id=" + getId() +
+                "length=" + length +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        gr.aueb.cf.ch4.shapes.Line line = (gr.aueb.cf.ch4.shapes.Line) o;
+
+        if (getId() != line.getId()) return false;
+        return Double.compare(getLength(), line.getLength()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp = Double.doubleToLongBits(getLength());
+        result =  (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (int) (getId() ^ (getId() >>> 32));
+        return result;
+    }
 }
