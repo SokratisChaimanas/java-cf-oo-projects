@@ -1,6 +1,9 @@
 package gr.aueb.cf.ch4.shapes2;
 
-public class Line extends AbstractShape implements ILine {
+import java.io.Serializable;
+
+public class Line extends AbstractShape implements ILine, Serializable, Cloneable {
+    private static final long serialVersionUID = 1L;
     private double length;
 
     public Line() {}
@@ -50,5 +53,10 @@ public class Line extends AbstractShape implements ILine {
         result =  (int) (temp ^ (temp >>> 32));
         result = 31 * result + (int) (getId() ^ (getId() >>> 32));
         return result;
+    }
+
+    @Override
+    protected Line clone() throws CloneNotSupportedException {
+        return (Line)super.clone();
     }
 }

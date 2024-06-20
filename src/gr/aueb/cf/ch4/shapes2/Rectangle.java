@@ -1,6 +1,9 @@
 package gr.aueb.cf.ch4.shapes2;
 
-public class Rectangle extends AbstractShape implements IRectangle {
+import java.io.Serializable;
+
+public class Rectangle extends AbstractShape implements IRectangle, Serializable, Cloneable {
+    private static final long serialVersionUID = 1L;
     private double width;
     private double height;
 
@@ -76,5 +79,10 @@ public class Rectangle extends AbstractShape implements IRectangle {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (int)(getId() ^ (getId() >>> 32));
         return result;
+    }
+
+    @Override
+    protected Rectangle clone() throws CloneNotSupportedException {
+        return (Rectangle) super.clone();
     }
 }

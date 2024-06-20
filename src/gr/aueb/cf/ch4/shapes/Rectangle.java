@@ -1,8 +1,12 @@
 package gr.aueb.cf.ch4.shapes;
 
+import org.w3c.dom.css.Rect;
+
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Rectangle extends AbstractShape implements ITwoDimensional {
+public class Rectangle extends AbstractShape implements ITwoDimensional, Serializable, Cloneable {
+    private static final long serialVersionUID = 1L;
     private double width;
     private double height;
 
@@ -74,5 +78,10 @@ public class Rectangle extends AbstractShape implements ITwoDimensional {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (int)(getId() ^ (getId() >>> 32));
         return result;
+    }
+
+    @Override
+    protected Rectangle clone() throws CloneNotSupportedException {
+        return (Rectangle)super.clone();
     }
 }

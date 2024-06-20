@@ -1,6 +1,11 @@
 package gr.aueb.cf.ch4.shapes;
 
-public class Line extends AbstractShape {
+import com.sun.source.doctree.SerialDataTree;
+
+import java.io.Serializable;
+
+public class Line extends AbstractShape implements Serializable, Cloneable {
+    private static final long serialVersionUID = 1L;
     private double length;
 
     public Line() {}
@@ -50,5 +55,10 @@ public class Line extends AbstractShape {
         result =  (int) (temp ^ (temp >>> 32));
         result = 31 * result + (int) (getId() ^ (getId() >>> 32));
         return result;
+    }
+
+    @Override
+    protected Line clone() throws CloneNotSupportedException {
+        return (Line)super.clone();
     }
 }

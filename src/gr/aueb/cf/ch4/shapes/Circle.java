@@ -1,6 +1,9 @@
 package gr.aueb.cf.ch4.shapes;
 
-public class Circle extends AbstractShape implements ITwoDimensional {
+import java.io.Serializable;
+
+public class Circle extends AbstractShape implements ITwoDimensional, Serializable, Cloneable {
+    private static final long serialVersionUID = 1L;
     private double radius;
 
     public Circle() {
@@ -57,5 +60,10 @@ public class Circle extends AbstractShape implements ITwoDimensional {
         result = (int) (temp ^ (temp >>> 32));
         result = 31 * result + (int) (getId() ^ (getId() >>> 32));
         return result;
+    }
+
+    @Override
+    protected Circle clone() throws CloneNotSupportedException {
+        return (Circle) super.clone();
     }
 }
